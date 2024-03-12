@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.LoginFormController">
    <children>
       <JFXTextField layoutX="479.0" layoutY="280.0" prefWidth="200.0" promptText="       Type your Username" />
       <JFXTextField layoutX="479.0" layoutY="330.0" prefWidth="200.0" promptText="        Type your Password" />
@@ -31,6 +30,11 @@
       <Label layoutX="385.0" layoutY="278.0" text="Username :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="478.0" layoutY="157.0" prefHeight="66.0" prefWidth="177.0" text="Secure Login" textFill="#bf4b4b">
+         <font>
+            <Font name="Dyuthi Regular" size="30.0" />
          </font>
       </Label>
    </children>
