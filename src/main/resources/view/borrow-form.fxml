@@ -10,18 +10,18 @@
 
 <AnchorPane prefHeight="420.0" prefWidth="685.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.BookFormController">
    <children>
-      <Label layoutX="27.0" layoutY="19.0" prefHeight="29.0" prefWidth="70.0" text="Book ID :">
+      <Label layoutX="27.0" layoutY="9.0" prefHeight="29.0" prefWidth="70.0" text="User ID :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="110.0" layoutY="20.0" />
-      <Label layoutX="27.0" layoutY="69.0" prefHeight="29.0" prefWidth="70.0" text="Title :">
+      <JFXTextField layoutX="100.0" layoutY="10.0" />
+      <Label layoutX="453.0" layoutY="77.0" prefHeight="29.0" prefWidth="70.0" text="Title :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="109.0" prefHeight="29.0" prefWidth="70.0" text="Author :">
+      <Label layoutX="27.0" layoutY="114.0" prefHeight="29.0" prefWidth="70.0" text="Author :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
@@ -31,17 +31,17 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="320.0" layoutY="109.0" prefHeight="29.0" prefWidth="112.0" text="Borrow Date :">
+      <Label layoutX="390.0" layoutY="114.0" prefHeight="29.0" prefWidth="112.0" text="Borrow Date :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="344.0" layoutY="149.0" prefHeight="29.0" prefWidth="81.0" text="Due Date :">
+      <Label layoutX="414.0" layoutY="149.0" prefHeight="29.0" prefWidth="81.0" text="Due Date :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="434.0" layoutY="109.0" prefHeight="29.0" prefWidth="139.0">
+      <Label layoutX="504.0" layoutY="115.0" prefHeight="29.0" prefWidth="139.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
@@ -51,38 +51,38 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="97.0" layoutY="109.0" prefHeight="29.0" prefWidth="206.0">
+      <Label layoutX="104.0" layoutY="115.0" prefHeight="29.0" prefWidth="206.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="69.0" prefHeight="29.0" prefWidth="164.0">
+      <Label layoutX="507.0" layoutY="78.0" prefHeight="29.0" prefWidth="164.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="360.0" layoutY="19.0" prefHeight="29.0" prefWidth="70.0" text="User ID :">
+      <Label layoutX="430.0" layoutY="39.0" prefHeight="29.0" prefWidth="70.0" text="Book ID :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="607.0" layoutY="18.0" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: #78e08f;" text="ADD" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="267.0" layoutY="8.0" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: #78e08f;" text="NEW" textFill="WHITE">
          <font>
             <Font name="Dyuthi Regular" size="12.0" />
          </font>
       </JFXButton>
-      <JFXTextField layoutX="438.0" layoutY="20.0" />
-      <Label layoutX="369.0" layoutY="69.0" prefHeight="29.0" prefWidth="54.0" text="Name :">
+      <JFXTextField layoutX="508.0" layoutY="40.0" />
+      <Label layoutX="27.0" layoutY="49.0" prefHeight="29.0" prefWidth="54.0" text="Name :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="434.0" layoutY="69.0" prefHeight="29.0" prefWidth="235.0">
+      <Label layoutX="92.0" layoutY="49.0" prefHeight="29.0" prefWidth="235.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="434.0" layoutY="149.0" prefHeight="29.0" prefWidth="139.0">
+      <Label layoutX="504.0" layoutY="149.0" prefHeight="29.0" prefWidth="139.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
@@ -101,5 +101,15 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </JFXButton>
+      <Label layoutX="413.0" layoutY="7.0" prefHeight="29.0" prefWidth="112.0" text="Borrow ID :">
+         <font>
+            <Font name="Dyuthi Regular" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="509.0" layoutY="8.0" prefHeight="29.0" prefWidth="164.0">
+         <font>
+            <Font name="Dyuthi Regular" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
