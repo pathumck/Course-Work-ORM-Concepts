@@ -13,11 +13,12 @@
    <children>
       <TableView layoutX="9.0" layoutY="173.0" prefHeight="239.0" prefWidth="667.0">
         <columns>
-          <TableColumn prefWidth="97.14328384399414" text="ID" />
-          <TableColumn prefWidth="147.14352416992188" text="Title" />
-            <TableColumn prefWidth="147.14341735839844" text="Author" />
-            <TableColumn prefWidth="132.85781860351562" text="Genre" />
-            <TableColumn prefWidth="130.71478271484375" text="Status" />
+          <TableColumn prefWidth="86.42889499664307" text="ID" />
+          <TableColumn prefWidth="155.00069427490234" text="Title" />
+            <TableColumn prefWidth="118.5718994140625" text="Author" />
+            <TableColumn prefWidth="98.57183837890625" text="Genre" />
+            <TableColumn prefWidth="99.28616333007812" text="Status" />
+            <TableColumn prefWidth="100.7147216796875" text="Action" />
         </columns>
       </TableView>
       <JFXTextField layoutX="109.0" layoutY="9.0" prefHeight="25.0" prefWidth="300.0" />
