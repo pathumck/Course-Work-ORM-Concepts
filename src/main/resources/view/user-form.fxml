@@ -26,24 +26,24 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="49.0" prefHeight="29.0" prefWidth="31.0" text="ID :">
+      <Label layoutX="37.0" layoutY="45.0" prefHeight="29.0" prefWidth="31.0" text="ID :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="37.0" layoutY="89.0" prefHeight="29.0" prefWidth="74.0" text="Address :">
+      <Label layoutX="37.0" layoutY="84.0" prefHeight="29.0" prefWidth="74.0" text="Address :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="257.0" layoutY="49.0" prefHeight="29.0" prefWidth="67.0" text="Name :">
+      <Label layoutX="377.0" layoutY="45.0" prefHeight="29.0" prefWidth="67.0" text="Name :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="324.0" layoutY="49.0" prefHeight="25.0" prefWidth="343.0" />
-      <JFXTextField layoutX="120.0" layoutY="89.0" prefHeight="25.0" prefWidth="354.0" />
-      <Label layoutX="67.0" layoutY="49.0" prefHeight="29.0" prefWidth="168.0">
+      <JFXTextField layoutX="444.0" layoutY="45.0" prefHeight="25.0" prefWidth="225.0" />
+      <JFXTextField layoutX="120.0" layoutY="84.0" prefHeight="25.0" prefWidth="245.0" />
+      <Label layoutX="67.0" layoutY="45.0" prefHeight="29.0" prefWidth="168.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
@@ -64,5 +64,11 @@
          </font>
       </JFXButton>
       <DatePicker layoutX="121.0" layoutY="131.0" />
+      <Label layoutX="400.0" layoutY="84.0" prefHeight="29.0" prefWidth="31.0" text="Tp :">
+         <font>
+            <Font name="Dyuthi Regular" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField layoutX="444.0" layoutY="84.0" prefHeight="25.0" prefWidth="225.0" />
    </children>
 </AnchorPane>
