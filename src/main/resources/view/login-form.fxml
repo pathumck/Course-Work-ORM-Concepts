@@ -22,7 +22,7 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="323.0" layoutY="430.0" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: #079992;" text="Login" textFill="WHITE">
+      <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="323.0" layoutY="430.0" onAction="#btnLoginOnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: #079992;" text="Login" textFill="WHITE">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>

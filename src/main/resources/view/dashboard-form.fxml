@@ -4,42 +4,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.DashBoardFormController">
    <children>
       <AnchorPane layoutX="7.0" layoutY="71.0" prefHeight="420.0" prefWidth="685.0" style="-fx-background-color: #f5cd79;">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="98.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Borrow" textFill="WHITE">
+            <JFXButton fx:id="btnBorrow" buttonType="RAISED" layoutX="98.0" layoutY="-59.0" onAction="#btnBorrowOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Borrow" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="198.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Return" textFill="WHITE">
+            <JFXButton fx:id="btnReturn" buttonType="RAISED" layoutX="198.0" layoutY="-59.0" onAction="#btnReturnOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Return" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="298.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Book" textFill="WHITE">
+            <JFXButton fx:id="btnBook" buttonType="RAISED" layoutX="298.0" layoutY="-59.0" onAction="#btnBookOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Book" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="397.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="User" textFill="WHITE">
+            <JFXButton fx:id="btnUser" buttonType="RAISED" layoutX="397.0" layoutY="-59.0" onAction="#btnUserOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="User" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="496.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Branch" textFill="WHITE">
+            <JFXButton fx:id="btnBranch" buttonType="RAISED" layoutX="496.0" layoutY="-59.0" onAction="#btnBranchOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Branch" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="595.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: #eb2f06;" text="Logout" textFill="WHITE">
+            <JFXButton fx:id="btnLogout" buttonType="RAISED" layoutX="595.0" layoutY="-59.0" onAction="#btnLogoutOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: #eb2f06;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="-59.0" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Home" textFill="WHITE">
+            <JFXButton fx:id="btnHome" buttonType="RAISED" layoutX="-1.0" layoutY="-59.0" onAction="#btnHomeOnAction" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: grey;" text="Home" textFill="WHITE">
                <font>
                   <Font name="Dyuthi Regular" size="20.0" />
                </font>
