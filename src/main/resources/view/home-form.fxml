@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.bookworm.controller.HomeFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="420.0" prefWidth="685.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.HomeFormController">
+   <children>
+      <TableView layoutX="9.0" layoutY="173.0" prefHeight="239.0" prefWidth="667.0">
+         <columns>
+            <TableColumn prefWidth="115.71478652954102" text="Book ID" />
+            <TableColumn prefWidth="151.4292449951172" text="Title" />
+            <TableColumn prefWidth="97.143310546875" text="User ID" />
+            <TableColumn prefWidth="113.5718994140625" text="User Name" />
+            <TableColumn prefWidth="87.85751342773438" text="Due Date" />
+            <TableColumn prefWidth="87.85751342773438" text="Tp" />
+         </columns>
+      </TableView>
+      <Label layoutX="17.0" layoutY="139.0" prefHeight="29.0" prefWidth="229.0" text="Due Date Expired Borrowings" textFill="RED">
+         <font>
+            <Font name="Dyuthi Regular" size="18.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
