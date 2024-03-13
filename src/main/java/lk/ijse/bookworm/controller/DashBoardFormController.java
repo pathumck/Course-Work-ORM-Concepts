@@ -2,8 +2,12 @@ package lk.ijse.bookworm.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
+import javafx.event.ActionEvent;
 
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class DashBoardFormController {
     @FXML
@@ -28,23 +32,54 @@ public class DashBoardFormController {
     private JFXButton btnUser;
 
     @FXML
-    void btnBookOnAction(ActionEvent event) {
+    private AnchorPane subAnchorpane;
 
+    @FXML
+    void btnBookOnAction(ActionEvent event) {
+        Parent rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/book-form.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.subAnchorpane.getChildren().clear();
+        this.subAnchorpane.getChildren().add(rootNode);
     }
 
     @FXML
     void btnBorrowOnAction(ActionEvent event) {
-
+        Parent rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/borrow-form.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.subAnchorpane.getChildren().clear();
+        this.subAnchorpane.getChildren().add(rootNode);
     }
 
     @FXML
     void btnBranchOnAction(ActionEvent event) {
-
+        Parent rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/branch-form.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.subAnchorpane.getChildren().clear();
+        this.subAnchorpane.getChildren().add(rootNode);
     }
 
     @FXML
     void btnHomeOnAction(ActionEvent event) {
-
+        Parent rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/home-form.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.subAnchorpane.getChildren().clear();
+        this.subAnchorpane.getChildren().add(rootNode);
     }
 
     @FXML
@@ -54,11 +89,26 @@ public class DashBoardFormController {
 
     @FXML
     void btnReturnOnAction(ActionEvent event) {
-
+        Parent rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/return-form.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.subAnchorpane.getChildren().clear();
+        this.subAnchorpane.getChildren().add(rootNode);
     }
 
     @FXML
     void btnUserOnAction(ActionEvent event) {
-
+        Parent rootNode = null;
+        try {
+            rootNode = FXMLLoader.load(this.getClass().getResource("/view/user-form.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.subAnchorpane.getChildren().clear();
+        this.subAnchorpane.getChildren().add(rootNode);
     }
+
 }
