@@ -46,12 +46,12 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="476.0" layoutY="121.0" onAction="#btnAddOnAction" prefWidth="90.0" style="-fx-background-color: #78e08f;" text="ADD">
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="476.0" layoutY="121.0" prefWidth="90.0" style="-fx-background-color: #78e08f;" text="ADD">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="580.0" layoutY="121.0" onAction="#btnUpdateOnAction" prefWidth="90.0" style="-fx-background-color: #e58e26;" text="UPDATE">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="580.0" layoutY="121.0" prefWidth="90.0" style="-fx-background-color: #e58e26;" text="UPDATE">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
