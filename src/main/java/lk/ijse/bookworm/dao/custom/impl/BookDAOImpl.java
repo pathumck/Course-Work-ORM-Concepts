@@ -71,6 +71,5 @@ public class BookDAOImpl implements BookDAO {
         }finally {
             session.close();
         }
-
     }
 }

@@ -199,7 +199,16 @@ public class BookFormController {
 
     @FXML
     void tblBookMouseClickOnAction(MouseEvent event) {
-
+        int index = tblBook.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        lblId.setText(colId.getCellData(index).toString());
+        txtTitle.setText(colTitle.getCellData(index).toString());
+        txtAuthor.setText(colAuthor.getCellData(index).toString());
+        cmbGenre.setValue(colGenre.getCellData(index).toString());
+        lblStatus.setText(colStatus.getCellData(index).toString());
+        cmbBranch.setValue(colBranch.getCellData(index).toString());
     }
 
 
