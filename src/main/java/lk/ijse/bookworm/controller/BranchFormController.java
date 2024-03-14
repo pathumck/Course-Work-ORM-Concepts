@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -16,6 +18,7 @@ import lk.ijse.bookworm.dto.tm.BranchTM;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class BranchFormController {
     @FXML
@@ -51,6 +54,8 @@ public class BranchFormController {
     @FXML
     private JFXTextField txtSearch;
 
+    private ObservableList<BranchTM> toTable;
+
     BranchBO branchBO = new BranchBOImpl();
 
     public void initialize() {
@@ -59,6 +64,7 @@ public class BranchFormController {
         vitualize();
         btnSaveAction();
         updateBtnAction();
+        searchFilter();
     }
 
     public void btnSaveAction() {
@@ -153,7 +159,7 @@ public class BranchFormController {
             tms.add(new BranchTM(branchDTO.getBranchId(),branchDTO.getBranchName(),branchDTO.getBranchAddress(),deleteButton));
         }
 
-        ObservableList<BranchTM> toTable = FXCollections.observableArrayList(tms);
+        toTable = FXCollections.observableArrayList(tms);
         tblBranch.setItems(toTable);
     }
 
@@ -202,5 +208,31 @@ public class BranchFormController {
         lblId.setText(colId.getCellData(index).toString());
         txtName.setText(colName.getCellData(index).toString());
         txtAddress.setText(colAddress.getCellData(index).toString());
+    }
+
+    private void searchFilter() {
+        FilteredList<BranchTM> filterData= new FilteredList<>(toTable, e->true);
+        txtSearch.setOnKeyReleased(e->{
+            txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterData.setPredicate((Predicate<? super BranchTM >) cust->{
+                    if(newValue==null){
+                        return true;
+                    }
+                    String toLowerCaseFilter = newValue.toLowerCase();
+                    if(cust.getId().contains(newValue)){
+                        return true;
+                    }else  if(cust.getName().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }else  if(cust.getAddress().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    return false;
+                });
+            });
+
+            final SortedList<BranchTM> branchTMS = new SortedList<>(filterData);
+            branchTMS.comparatorProperty().bind(tblBranch.comparatorProperty());
+            tblBranch.setItems(branchTMS);
+        });
     }
 }
