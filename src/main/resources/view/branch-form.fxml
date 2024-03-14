@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="420.0" prefWidth="685.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.BranchFormController">
    <children>
-      <TableView fx:id="tblBranch" layoutX="9.0" layoutY="173.0" prefHeight="239.0" prefWidth="667.0">
+      <TableView fx:id="tblBranch" layoutX="9.0" layoutY="173.0" onMouseClicked="#tblBranchMouseClickOnAction" prefHeight="239.0" prefWidth="667.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="86.42889499664307" text="ID" />
           <TableColumn fx:id="colName" prefWidth="172.85796356201172" text="Name" />

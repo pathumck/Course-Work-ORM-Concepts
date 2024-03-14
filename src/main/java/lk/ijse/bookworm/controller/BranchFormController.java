@@ -2,21 +2,17 @@ package lk.ijse.bookworm.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.bookworm.bo.custom.BranchBO;
 import lk.ijse.bookworm.bo.custom.impl.BranchBOImpl;
 import lk.ijse.bookworm.dto.BranchDTO;
 import lk.ijse.bookworm.dto.tm.BranchTM;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,10 +58,17 @@ public class BranchFormController {
         setTabelBranch();
         vitualize();
         btnSaveAction();
+        updateBtnAction();
     }
 
     public void btnSaveAction() {
         btnAdd.setOnAction((e) -> {
+            int index = tblBranch.getSelectionModel().getSelectedIndex();
+            if (index > -1) {
+                new Alert(Alert.AlertType.ERROR,"Branch "+lblId.getText()+"already exists").show();
+                clearAllFields();
+                return;
+            }
             String name = txtName.getText();
             String address = txtAddress.getText();
 
@@ -88,6 +91,34 @@ public class BranchFormController {
                             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
                         }
                 }
+        });
+    }
+
+    public void updateBtnAction() {
+        btnUpdate.setOnAction((e) -> {
+            if (!tblBranch.getSelectionModel().isEmpty()) {
+                if (txtName.getText().isEmpty()||txtAddress.getText().isEmpty()){
+                    new Alert(Alert.AlertType.ERROR,"Check empty fields!").show();
+                    return;
+                }
+                //validation
+                ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to update Branch \"" + lblId.getText() + "\" ?", yes, no).showAndWait();
+
+                if (type.orElse(no) == yes) {
+                    boolean flag = branchBO.updateBranch(new BranchDTO(lblId.getText(),txtName.getText(),txtAddress.getText()));
+                    if (flag) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Branch Updated").show();
+                        clearAllFields();
+                    }else {
+                        new Alert(Alert.AlertType.ERROR, "Error!").show();
+                    }
+                }
+            }else {
+                new Alert(Alert.AlertType.INFORMATION, "Select a row in Branch Table!").show();
+            }
         });
     }
 
@@ -162,4 +193,14 @@ public class BranchFormController {
         txtSearch.clear();
     }
 
+    @FXML
+    void tblBranchMouseClickOnAction(MouseEvent event) {
+        int index = tblBranch.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        lblId.setText(colId.getCellData(index).toString());
+        txtName.setText(colName.getCellData(index).toString());
+        txtAddress.setText(colAddress.getCellData(index).toString());
+    }
 }
