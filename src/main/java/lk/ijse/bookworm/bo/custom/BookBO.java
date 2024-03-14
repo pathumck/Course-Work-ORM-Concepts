@@ -13,4 +13,6 @@ public interface BookBO {
     boolean deleteBook(String id);
 
     boolean updateBook(BookDTO bookDTO);
+
+    List<BranchDTO> getAllBranches();
 }

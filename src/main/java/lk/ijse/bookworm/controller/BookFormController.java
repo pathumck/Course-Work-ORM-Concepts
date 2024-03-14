@@ -90,8 +90,17 @@ public class BookFormController {
         vitualize();
         updateBtnAction();
         searchFilter();
+        setCmbBranch();
         cmbGenre.getItems().addAll(Arrays.asList("Mystery", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
-        cmbBranch.getItems().addAll(Arrays.asList("B001", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
+    }
+
+    private void setCmbBranch() {
+        List<BranchDTO> dtos = bookBO.getAllBranches();
+        List<String> ids = new ArrayList<>();
+        for (BranchDTO dto : dtos) {
+            ids.add(dto.getBranchId());
+        }
+        cmbBranch.getItems().setAll(ids);
     }
 
     private void generateNextID() {

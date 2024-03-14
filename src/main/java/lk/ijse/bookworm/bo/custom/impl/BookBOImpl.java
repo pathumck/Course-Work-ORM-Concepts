@@ -46,5 +46,13 @@ public class BookBOImpl implements BookBO {
         return bookDAO.update(new Book(bookDTO.getBookId(),bookDTO.getBookTitle(),bookDTO.getBookAuthor(),bookDTO.getBookGenre(),bookDTO.getStatus(),branchDAO.search(bookDTO.getBranchId())));
     }
 
-
+    @Override
+    public List<BranchDTO> getAllBranches() {
+        List<Branch> branches = branchDAO.getAll();
+        List<BranchDTO> dtos = new ArrayList<>();
+        for (Branch branch : branches) {
+            dtos.add(new BranchDTO(branch.getId(),branch.getName(),branch.getAddress()));
+        }
+        return dtos;
+    }
 }
