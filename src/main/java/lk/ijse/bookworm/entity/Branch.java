@@ -18,6 +18,12 @@ public class Branch {
     public Branch() {
     }
 
+    public Branch(String id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
     public Branch(String id, String name, String address, List<Book> books) {
         this.id = id;
         this.name = name;
