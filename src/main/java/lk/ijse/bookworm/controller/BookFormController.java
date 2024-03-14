@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class BookFormController {
     @FXML
@@ -86,6 +89,7 @@ public class BookFormController {
         setTabelBook();
         vitualize();
         updateBtnAction();
+        searchFilter();
         cmbGenre.getItems().addAll(Arrays.asList("Mystery", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
         cmbBranch.getItems().addAll(Arrays.asList("B001", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
     }
@@ -146,6 +150,7 @@ public class BookFormController {
         cmbGenre.getItems().clear();
         cmbBranch.getItems().clear();
         txtSearch.clear();
+        lblStatus.setText("");
         initialize();
     }
 
@@ -236,6 +241,44 @@ public class BookFormController {
             }else {
                 new Alert(Alert.AlertType.INFORMATION, "Select a row in Book Table!").show();
             }
+        });
+    }
+
+    private void searchFilter() {
+        FilteredList<BookTM> filterData= new FilteredList<>(toTable, e->true);
+        txtSearch.setOnKeyReleased(e->{
+            txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterData.setPredicate((Predicate<? super BookTM >) cust->{
+                    if(newValue==null){
+                        return true;
+                    }
+                    String toLowerCaseFilter = newValue.toLowerCase();
+                    if(cust.getId().contains(newValue)){
+                        return true;
+                    }else  if(cust.getId().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }else  if(cust.getTitle().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    else  if(cust.getAuthor().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    else  if(cust.getGenre().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    else  if(cust.getStatus().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    else  if(cust.getBranch().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    return false;
+                });
+            });
+
+            final SortedList<BookTM> bookTMS = new SortedList<>(filterData);
+            bookTMS.comparatorProperty().bind(tblBook.comparatorProperty());
+            tblBook.setItems(bookTMS);
         });
     }
 
