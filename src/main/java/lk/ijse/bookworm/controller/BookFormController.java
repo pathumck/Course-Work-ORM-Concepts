@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lk.ijse.bookworm.bo.custom.BookBO;
+import lk.ijse.bookworm.bo.custom.impl.BookBOImpl;
 
 public class BookFormController {
     @FXML
@@ -58,6 +60,12 @@ public class BookFormController {
     @FXML
     private JFXTextField txtTitle;
 
+    BookBO bookBO = new BookBOImpl();
+
+    public void initialize() {
+        generateNextID();
+    }
+
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
@@ -67,4 +75,24 @@ public class BookFormController {
     void btnUpdateOnAction(ActionEvent event) {
 
     }
+
+    private void generateNextID() {
+        String bookId = splitBookId(bookBO.generateNextBookId());
+        lblId.setText(bookId);
+    }
+
+    private String splitBookId(String bookId) {
+        if (bookId == null || bookId.isEmpty() || !bookId.matches("^b\\d+$")) {
+            return "b001";
+        } else {
+            String numericPart = bookId.substring(3);
+            int numericValue = Integer.parseInt(numericPart);
+
+            int nextNumericValue = numericValue + 1;
+            String nextNumericPart = String.format("%0" + numericPart.length() + "d", nextNumericValue);
+
+            return "b00" + nextNumericPart;
+        }
+    }
+
 }
