@@ -11,16 +11,16 @@
 
 <AnchorPane prefHeight="420.0" prefWidth="685.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.UserFormController">
    <children>
-      <TableView layoutX="9.0" layoutY="173.0" prefHeight="239.0" prefWidth="667.0">
+      <TableView fx:id="tblUser" layoutX="9.0" layoutY="173.0" prefHeight="239.0" prefWidth="667.0">
         <columns>
-          <TableColumn prefWidth="97.14328384399414" text="ID" />
-          <TableColumn prefWidth="147.14352416992188" text="Name" />
-            <TableColumn prefWidth="170.00071716308594" text="Address" />
-            <TableColumn prefWidth="135.00057983398438" text="Birthday" />
-            <TableColumn prefWidth="107.143310546875" text="Action" />
+          <TableColumn fx:id="colId" prefWidth="97.14328384399414" text="ID" />
+          <TableColumn fx:id="colName" prefWidth="147.14352416992188" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="170.00071716308594" text="Address" />
+            <TableColumn fx:id="colBirthDay" prefWidth="135.00057983398438" text="Birthday" />
+            <TableColumn fx:id="colAction" prefWidth="107.143310546875" text="Action" />
         </columns>
       </TableView>
-      <JFXTextField layoutX="109.0" layoutY="9.0" prefHeight="25.0" prefWidth="300.0" />
+      <JFXTextField fx:id="txtSearch" layoutX="109.0" layoutY="9.0" prefHeight="25.0" prefWidth="300.0" />
       <Label layoutX="37.0" layoutY="9.0" text="Search :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
@@ -41,9 +41,9 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="444.0" layoutY="45.0" prefHeight="25.0" prefWidth="225.0" />
-      <JFXTextField layoutX="120.0" layoutY="84.0" prefHeight="25.0" prefWidth="245.0" />
-      <Label layoutX="67.0" layoutY="45.0" prefHeight="29.0" prefWidth="168.0">
+      <JFXTextField fx:id="txtName" layoutX="444.0" layoutY="45.0" prefHeight="25.0" prefWidth="225.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="120.0" layoutY="84.0" prefHeight="25.0" prefWidth="245.0" />
+      <Label fx:id="lblId" layoutX="67.0" layoutY="45.0" prefHeight="29.0" prefWidth="168.0">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
@@ -53,22 +53,22 @@
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="476.0" layoutY="121.0" prefWidth="90.0" style="-fx-background-color: #78e08f;" text="ADD">
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="476.0" layoutY="121.0" onAction="#btnAddOnAction" prefWidth="90.0" style="-fx-background-color: #78e08f;" text="ADD">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="580.0" layoutY="121.0" prefWidth="90.0" style="-fx-background-color: #e58e26;" text="UPDATE">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="580.0" layoutY="121.0" onAction="#btnUpdateOnAction" prefWidth="90.0" style="-fx-background-color: #e58e26;" text="UPDATE">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </JFXButton>
-      <DatePicker layoutX="121.0" layoutY="131.0" />
+      <DatePicker fx:id="dPickBD" layoutX="121.0" layoutY="131.0" />
       <Label layoutX="400.0" layoutY="84.0" prefHeight="29.0" prefWidth="31.0" text="Tp :">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="444.0" layoutY="84.0" prefHeight="25.0" prefWidth="225.0" />
+      <JFXTextField fx:id="txtTp" layoutX="444.0" layoutY="84.0" prefHeight="25.0" prefWidth="225.0" />
    </children>
 </AnchorPane>
