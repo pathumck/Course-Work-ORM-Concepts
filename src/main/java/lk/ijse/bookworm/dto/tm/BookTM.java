@@ -8,17 +8,19 @@ public class BookTM {
     private String author;
     private String genre;
     private String status;
+    private String branch;
     private Button action;
 
     public BookTM() {
     }
 
-    public BookTM(String id, String title, String author, String genre, String status, Button action) {
+    public BookTM(String id, String title, String author, String genre, String status, String branch, Button action) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.status = status;
+        this.branch = branch;
         this.action = action;
     }
 
@@ -70,6 +72,14 @@ public class BookTM {
         this.action = action;
     }
 
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
     @Override
     public String toString() {
         return "BookTM{" +
@@ -78,6 +88,7 @@ public class BookTM {
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
                 ", status='" + status + '\'' +
+                ", branch='" + branch + '\'' +
                 ", action=" + action +
                 '}';
     }

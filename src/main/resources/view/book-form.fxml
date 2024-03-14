@@ -14,11 +14,12 @@
       <TableView fx:id="tblBook" layoutX="9.0" layoutY="173.0" onMouseClicked="#tblBookMouseClickOnAction" prefHeight="239.0" prefWidth="667.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="86.42889499664307" text="ID" />
-            <TableColumn fx:id="colTitle" prefWidth="155.00069427490234" text="Title" />
-            <TableColumn fx:id="colAuthor" prefWidth="118.5718994140625" text="Author" />
-            <TableColumn fx:id="colGenre" prefWidth="98.57183837890625" text="Genre" />
-            <TableColumn fx:id="colStatus" prefWidth="99.28616333007812" text="Status" />
-            <TableColumn fx:id="colAction" prefWidth="100.7147216796875" text="Action" />
+            <TableColumn fx:id="colTitle" prefWidth="114.28618621826172" text="Title" />
+            <TableColumn fx:id="colAuthor" prefWidth="125.00054931640625" text="Author" />
+            <TableColumn fx:id="colGenre" prefWidth="67.857421875" text="Genre" />
+            <TableColumn fx:id="colStatus" prefWidth="94.28607177734375" text="Status" />
+            <TableColumn fx:id="colBranch" prefWidth="81.42898559570312" text="Branch" />
+            <TableColumn fx:id="colAction" prefWidth="81.42898559570312" text="Action" />
          </columns>
       </TableView>
       <JFXTextField fx:id="txtSearch" layoutX="109.0" layoutY="9.0" prefHeight="25.0" prefWidth="300.0" />
