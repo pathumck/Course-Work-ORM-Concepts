@@ -41,5 +41,10 @@ public class BookBOImpl implements BookBO {
         return bookDAO.delete(id);
     }
 
+    @Override
+    public boolean updateBook(BookDTO bookDTO) {
+        return bookDAO.update(new Book(bookDTO.getBookId(),bookDTO.getBookTitle(),bookDTO.getBookAuthor(),bookDTO.getBookGenre(),bookDTO.getStatus(),branchDAO.search(bookDTO.getBranchId())));
+    }
+
 
 }

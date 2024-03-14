@@ -9,4 +9,5 @@ public interface BookDAO {
     boolean save(Book book);
     List<Book> getAll();
     boolean delete(String id);
+    boolean update(Book book);
 }

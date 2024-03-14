@@ -85,6 +85,7 @@ public class BookFormController {
         btnSaveAction();
         setTabelBook();
         vitualize();
+        updateBtnAction();
         cmbGenre.getItems().addAll(Arrays.asList("Mystery", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
         cmbBranch.getItems().addAll(Arrays.asList("B001", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
     }
@@ -196,7 +197,6 @@ public class BookFormController {
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
     }
 
-
     @FXML
     void tblBookMouseClickOnAction(MouseEvent event) {
         int index = tblBook.getSelectionModel().getSelectedIndex();
@@ -210,6 +210,35 @@ public class BookFormController {
         lblStatus.setText(colStatus.getCellData(index).toString());
         cmbBranch.setValue(colBranch.getCellData(index).toString());
     }
+
+    public void updateBtnAction() {
+        btnUpdate.setOnAction((e) -> {
+            if (!tblBook.getSelectionModel().isEmpty()) {
+                if (txtAuthor.getText().isEmpty()||txtTitle.getText().isEmpty()||cmbGenre.getValue()==null||cmbBranch.getValue()==null){
+                    new Alert(Alert.AlertType.ERROR,"Check empty fields!").show();
+                    return;
+                }
+                //validation
+                ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to update Book \"" + lblId.getText() + "\" ?", yes, no).showAndWait();
+
+                if (type.orElse(no) == yes) {
+                    boolean flag = bookBO.updateBook(new BookDTO(lblId.getText(),txtTitle.getText(),txtAuthor.getText(),cmbGenre.getValue(),cmbBranch.getValue(),lblStatus.getText()));
+                    if (flag) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Book Updated").show();
+                        clearAllFields();
+                    }else {
+                        new Alert(Alert.AlertType.ERROR, "Error!").show();
+                    }
+                }
+            }else {
+                new Alert(Alert.AlertType.INFORMATION, "Select a row in Book Table!").show();
+            }
+        });
+    }
+
 
 
 }

@@ -44,6 +44,8 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
+
+
     @Override
     public List<Book> getAll() {
         Session session = HbFactoryConfiguration.getInstance().getSession();
@@ -69,6 +71,24 @@ public class BookDAOImpl implements BookDAO {
             e.printStackTrace();
             return false;
         }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean update(Book book) {
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.update(book);
+            transaction.commit();
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
             session.close();
         }
     }
