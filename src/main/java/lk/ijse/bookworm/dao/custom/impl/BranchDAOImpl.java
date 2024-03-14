@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class BranchDAOImpl implements BranchDAO {
     @Override
     public String generateNextId() {
@@ -60,5 +62,32 @@ public class BranchDAOImpl implements BranchDAO {
         }
     }
 
+    @Override
+    public List<Branch> getAll() {
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Branch> branches = null;
+        Query<Branch> query = session.createQuery("from Branch", Branch.class);
+        branches = query.list();
+        transaction.commit();
+        return branches;
+    }
 
+    @Override
+    public boolean delete(String id) {
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Query query = session.createQuery("DELETE FROM Branch WHERE id = :id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+         session.close();
+        }
+    }
 }
