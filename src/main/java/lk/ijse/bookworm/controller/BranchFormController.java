@@ -4,11 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import lk.ijse.bookworm.bo.custom.BranchBO;
 import lk.ijse.bookworm.bo.custom.impl.BranchBOImpl;
+import lk.ijse.bookworm.dto.BranchDTO;
 
 public class BranchFormController {
     @FXML
@@ -52,7 +54,12 @@ public class BranchFormController {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-
+        boolean flag = branchBO.saveBranch(new BranchDTO(lblId.getText(),txtName.getText(),txtAddress.getText()));
+        if (flag) {
+            new Alert(Alert.AlertType.CONFIRMATION,"Branch added successfully").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR,"Error").show();
+        }
     }
 
     @FXML
