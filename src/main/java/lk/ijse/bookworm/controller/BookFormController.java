@@ -66,16 +66,6 @@ public class BookFormController {
         generateNextID();
     }
 
-    @FXML
-    void btnAddOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
-
-    }
-
     private void generateNextID() {
         String bookId = splitBookId(bookBO.generateNextBookId());
         lblId.setText(bookId);
