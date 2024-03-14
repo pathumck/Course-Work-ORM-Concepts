@@ -64,7 +64,12 @@ public class BranchFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+        boolean flag = branchBO.updateBranch(new BranchDTO(lblId.getText(),txtName.getText(),txtAddress.getText()));
+        if (flag) {
+            new Alert(Alert.AlertType.CONFIRMATION,"Branch updated successfully").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR,"Error").show();
+        }
     }
 
     private void generateNextId() {
