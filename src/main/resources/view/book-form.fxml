@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="420.0" prefWidth="685.0" style="-fx-background-color: #f5cd79;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bookworm.controller.BookFormController">
    <children>
-      <TableView fx:id="tblBook" layoutX="9.0" layoutY="173.0" prefHeight="239.0" prefWidth="667.0">
+      <TableView fx:id="tblBook" layoutX="9.0" layoutY="173.0" onMouseClicked="#tblBookMouseClickOnAction" prefHeight="239.0" prefWidth="667.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="86.42889499664307" text="ID" />
             <TableColumn fx:id="colTitle" prefWidth="155.00069427490234" text="Title" />
@@ -71,12 +71,12 @@
          </font>
       </Label>
       <JFXComboBox fx:id="cmbBranch" layoutX="104.0" layoutY="130.0" prefHeight="25.0" prefWidth="150.0" />
-      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="476.0" layoutY="121.0" onAction="#btnAddOnAction" prefWidth="90.0" style="-fx-background-color: #78e08f;" text="ADD">
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="476.0" layoutY="121.0" prefWidth="90.0" style="-fx-background-color: #78e08f;" text="ADD">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="580.0" layoutY="121.0" onAction="#btnUpdateOnAction" prefWidth="90.0" style="-fx-background-color: #e58e26;" text="UPDATE">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="580.0" layoutY="121.0" prefWidth="90.0" style="-fx-background-color: #e58e26;" text="UPDATE">
          <font>
             <Font name="Dyuthi Regular" size="18.0" />
          </font>
