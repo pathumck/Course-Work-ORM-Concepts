@@ -5,11 +5,16 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.bookworm.bo.custom.BookBO;
 import lk.ijse.bookworm.bo.custom.impl.BookBOImpl;
+import lk.ijse.bookworm.dto.BookDTO;
+import lk.ijse.bookworm.dto.BranchDTO;
+import lk.ijse.bookworm.entity.Branch;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 public class BookFormController {
     @FXML
@@ -19,10 +24,10 @@ public class BookFormController {
     private JFXButton btnUpdate;
 
     @FXML
-    private JFXComboBox<?> cmbBranch;
+    private JFXComboBox<String> cmbBranch;
 
     @FXML
-    private JFXComboBox<?> cmbGenre;
+    private JFXComboBox<String> cmbGenre;
 
     @FXML
     private TableColumn<?, ?> colAction;
@@ -64,6 +69,9 @@ public class BookFormController {
 
     public void initialize() {
         generateNextID();
+        btnSaveAction();
+        cmbGenre.getItems().addAll(Arrays.asList("Mystery", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
+        cmbBranch.getItems().addAll(Arrays.asList("B001", "Romance", "Science Fiction", "Fantasy", "Thriller", "Horror", "Historical Fiction", "Biography", "Self-Help", "Poetry"));
     }
 
     private void generateNextID() {
@@ -84,5 +92,51 @@ public class BookFormController {
             return "b00" + nextNumericPart;
         }
     }
+
+    public void btnSaveAction() {
+        btnAdd.setOnAction((e) -> {
+            int index = tblBook.getSelectionModel().getSelectedIndex();
+            if (index > -1) {
+                new Alert(Alert.AlertType.ERROR,"Book "+lblId.getText()+" already exists").show();
+                clearAllFields();
+                return;
+            }
+
+            if (txtAuthor.getText().isEmpty()||txtTitle.getText().isEmpty()||cmbGenre.getValue()==null||cmbBranch.getValue()==null){
+                new Alert(Alert.AlertType.ERROR,"Text Fields Empty!").show();
+                return;
+            }
+
+            //validation
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to add new Book \""+lblId.getText()+"\" ?", yes, no).showAndWait();
+
+            if (type.orElse(no) == yes) {
+                Boolean flag = bookBO.saveBook(new BookDTO(lblId.getText(),txtTitle.getText(),txtAuthor.getText(),cmbGenre.getValue(),cmbBranch.getValue(),"yes"));
+                if (flag) {
+                    clearAllFields();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Book Saved!").show();
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+                }
+            }
+        });
+    }
+
+    private void clearAllFields() {
+        txtTitle.clear();
+        txtAuthor.clear();
+        cmbGenre.getItems().clear();
+        cmbBranch.getItems().clear();
+        txtSearch.clear();
+        initialize();
+    }
+
+    @FXML
+    void tblBookMouseClickOnAction(MouseEvent event) {
+
+    }
+
 
 }

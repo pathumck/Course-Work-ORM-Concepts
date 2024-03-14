@@ -1,21 +1,23 @@
 package lk.ijse.bookworm.dto;
 
+import lk.ijse.bookworm.entity.Branch;
+
 public class BookDTO {
     String bookId;
     String bookTitle;
     String bookAuthor;
     String bookGenre;
-    String bookBranch;
+    String branchId;
     String status;
 
     public BookDTO() {}
 
-    public BookDTO(String bookId, String bookTitle, String bookAuthor, String bookGenre, String bookBranch, String status) {
+    public BookDTO(String bookId, String bookTitle, String bookAuthor, String bookGenre, String branchId, String status) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.bookGenre = bookGenre;
-        this.bookBranch = bookBranch;
+        this.branchId = branchId;
         this.status = status;
     }
 
@@ -51,12 +53,12 @@ public class BookDTO {
         this.bookGenre = bookGenre;
     }
 
-    public String getBookBranch() {
-        return bookBranch;
+    public String getBranchId() {
+        return branchId;
     }
 
-    public void setBookBranch(String bookBranch) {
-        this.bookBranch = bookBranch;
+    public void setBranchId(String branchId) {
+        this.branchId = branchId;
     }
 
     public String getStatus() {
@@ -74,7 +76,7 @@ public class BookDTO {
                 ", bookTitle='" + bookTitle + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
                 ", bookGenre='" + bookGenre + '\'' +
-                ", bookBranch='" + bookBranch + '\'' +
+                ", branchId='" + branchId + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

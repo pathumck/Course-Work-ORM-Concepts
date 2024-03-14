@@ -10,4 +10,5 @@ public interface BranchDAO {
     boolean update(Branch branch);
     List<Branch> getAll();
     boolean delete(String id);
+    Branch search(String id);
 }

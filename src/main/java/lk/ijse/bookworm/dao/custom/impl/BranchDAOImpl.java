@@ -90,4 +90,14 @@ public class BranchDAOImpl implements BranchDAO {
          session.close();
         }
     }
+
+    @Override
+    public Branch search(String id) {
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("FROM Branch WHERE id = :branchId");
+        query.setParameter("branchId", id);
+        Branch branch = (Branch) query.uniqueResult();
+        session.close();
+        return branch;
+    }
 }
