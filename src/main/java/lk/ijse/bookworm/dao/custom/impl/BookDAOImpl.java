@@ -12,7 +12,18 @@ import java.util.List;
 public class BookDAOImpl implements BookDAO {
     @Override
     public String generateNextId() {
-        return null ;
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        String prefix = "b00";
+        Query<String> query = session.createQuery(
+                "SELECT b.id FROM Book b WHERE b.id LIKE :prefix ORDER BY CAST(SUBSTRING(b.id, :prefixLength + 1) AS integer) DESC",
+                String.class
+        );
+        query.setParameter("prefix", prefix + "%");
+        query.setParameter("prefixLength", prefix.length());
+        query.setMaxResults(1);
+        String nextBookId = query.uniqueResult();
+        session.close();
+        return nextBookId;
     }
 
     @Override
