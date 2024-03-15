@@ -6,17 +6,17 @@ public class UserTM {
     private String id;
     private String name;
     private String address;
-    private String bDy;
+    private String birthDay;
     private String tp;
     private Button action;
 
     public UserTM() {}
 
-    public UserTM(String id, String name, String address, String bDy, String tp, Button action) {
+    public UserTM(String id, String name, String address, String birthDay, String tp, Button action) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.bDy = bDy;
+        this.birthDay = birthDay;
         this.tp = tp;
         this.action = action;
     }
@@ -45,12 +45,12 @@ public class UserTM {
         this.address = address;
     }
 
-    public String getbDy() {
-        return bDy;
+    public String getBirthDay() {
+        return birthDay;
     }
 
-    public void setbDy(String bDy) {
-        this.bDy = bDy;
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
     }
 
     public String getTp() {
@@ -75,7 +75,7 @@ public class UserTM {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", bDy='" + bDy + '\'' +
+                ", birthDay='" + birthDay + '\'' +
                 ", tp='" + tp + '\'' +
                 ", action=" + action +
                 '}';
