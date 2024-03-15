@@ -22,6 +22,14 @@ public class User {
     public User() {
     }
 
+    public User(String id, String name, String address, String tp, String bDay) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.tp = tp;
+        this.bDay = bDay;
+    }
+
     public User(String id, String name, String address, String tp, String bDay, List<Borrow> borrowList, List<Returns> returnList) {
         this.id = id;
         this.name = name;
