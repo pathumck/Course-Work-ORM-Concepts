@@ -18,6 +18,7 @@ import lk.ijse.bookworm.dto.tm.BookTM;
 import lk.ijse.bookworm.dto.tm.UserTM;
 import org.hibernate.HibernateException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -100,7 +101,15 @@ private JFXButton btnAdd;
 
     @FXML
     void tblUserMouseClickedOnAction(MouseEvent event) {
-
+        int index = tblUser.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        lblId.setText(colId.getCellData(index).toString());
+        txtName.setText(colName.getCellData(index).toString());
+        txtAddress.setText(colAddress.getCellData(index).toString());
+        txtTp.setText(colTp.getCellData(index).toString());
+        dPickBD.setValue(LocalDate.parse(colBirthDay.getCellData(index).toString()));
     }
 
     public void btnSaveAction() {
