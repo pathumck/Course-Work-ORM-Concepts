@@ -2,11 +2,15 @@ package lk.ijse.bookworm.dao.custom.impl;
 
 import lk.ijse.bookworm.bo.custom.UserBO;
 import lk.ijse.bookworm.dao.custom.UserDAO;
+import lk.ijse.bookworm.entity.Book;
 import lk.ijse.bookworm.entity.User;
 import lk.ijse.bookworm.util.HbFactoryConfiguration;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
@@ -58,6 +62,34 @@ public class UserDAOImpl implements UserDAO {
             return false;
         }
         finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<User> getAll() {
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<User> users = null;
+        Query<User> query = session.createQuery("from User", User.class);
+        users = query.list();
+        transaction.commit();
+        return users;
+    }
+
+    @Override
+    public boolean delete(String id) throws HibernateException {
+        Session session = HbFactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Query query = session.createQuery("DELETE FROM User WHERE id = :id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        }catch (HibernateException e) {
+            throw e;
+        }finally {
             session.close();
         }
     }

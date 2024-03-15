@@ -2,15 +2,24 @@ package lk.ijse.bookworm.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.bookworm.bo.custom.UserBO;
 import lk.ijse.bookworm.bo.custom.impl.UserBOImpl;
 import lk.ijse.bookworm.dto.BookDTO;
 import lk.ijse.bookworm.dto.UserDTO;
+import lk.ijse.bookworm.dto.tm.BookTM;
+import lk.ijse.bookworm.dto.tm.UserTM;
+import org.hibernate.HibernateException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class UserFormController {@FXML
@@ -20,19 +29,22 @@ private JFXButton btnAdd;
     private JFXButton btnUpdate;
 
     @FXML
-    private TableColumn<?, ?> colAction;
+    private TableColumn<UserTM, Button> colAction;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<UserTM, String> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colBirthDay;
+    private TableColumn<UserTM, String> colBirthDay;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<UserTM, String> colId;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<UserTM, String> colName;
+
+    @FXML
+    private TableColumn<UserTM, String> colTp;
 
     @FXML
     private DatePicker dPickBD;
@@ -41,7 +53,7 @@ private JFXButton btnAdd;
     private Label lblId;
 
     @FXML
-    private TableView<?> tblUser;
+    private TableView<UserTM> tblUser;
 
     @FXML
     private JFXTextField txtAddress;
@@ -55,12 +67,16 @@ private JFXButton btnAdd;
     @FXML
     private JFXTextField txtTp;
 
+    private ObservableList<UserTM> toTable;
+
     UserBO userBO = new UserBOImpl();
 
     public void initialize() {
         generateNextID();
         btnSaveAction();
         updateBtnAction();
+        vitualize();
+        setTabelBook();
     }
 
     private void generateNextID() {
@@ -154,6 +170,60 @@ private JFXButton btnAdd;
             }
         });
     }
+
+    private void setTabelBook() {
+        List<UserDTO> userDTOS = userBO.getAllUsers();
+        List<UserTM> tms = new ArrayList<>();
+
+        for (UserDTO userDTO : userDTOS) {
+            Button deleteButton = new Button("Delete");
+            deleteButton.setCursor(Cursor.HAND);
+            deleteButton.setStyle("-fx-background-color: #e84118; -fx-text-fill: #ffffff;");
+            setRemoveBtnAction(deleteButton);
+            tms.add(new UserTM(userDTO.getUserId(),userDTO.getUserName(),userDTO.getUserAddress(),userDTO.getUserBirthDay(),userDTO.getUserTp(),deleteButton));
+        }
+
+        toTable = FXCollections.observableArrayList(tms);
+        tblUser.setItems(toTable);
+    }
+
+    private void setRemoveBtnAction(Button deleteButton) {
+        deleteButton.setOnAction((e) -> {
+            Integer index = tblUser.getSelectionModel().getSelectedIndex();
+            if (index <= -1) {
+                new Alert(Alert.AlertType.ERROR, "Please select a User table row to delete a Book!").show();
+                return;
+            }
+            String id = colId.getCellData(index).toString();
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to delete User \"" + id + "\" ?", yes, no).showAndWait();
+
+            if (type.orElse(no) == yes) {
+                Boolean flag = null;
+                try {
+                    flag = userBO.deleteUser(id);
+                }catch (HibernateException ex) {
+                    new Alert(Alert.AlertType.ERROR, "Error!").show();
+                }
+                if (flag) {
+                    clearAllFields();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Deleted!").show();
+                }
+            }
+        });
+    }
+
+    private void vitualize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colBirthDay.setCellValueFactory(new PropertyValueFactory<>("birthDay"));
+        colTp.setCellValueFactory(new PropertyValueFactory<>("tp"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
+
+    }
+
 
 
 }
