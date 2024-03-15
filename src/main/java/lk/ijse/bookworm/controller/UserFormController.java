@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -22,6 +24,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class UserFormController {@FXML
 private JFXButton btnAdd;
@@ -78,6 +81,7 @@ private JFXButton btnAdd;
         updateBtnAction();
         vitualize();
         setTabelBook();
+        searchFilter();
     }
 
     private void generateNextID() {
@@ -230,9 +234,37 @@ private JFXButton btnAdd;
         colBirthDay.setCellValueFactory(new PropertyValueFactory<>("birthDay"));
         colTp.setCellValueFactory(new PropertyValueFactory<>("tp"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
-
     }
 
+    private void searchFilter() {
+        FilteredList<UserTM> filterData= new FilteredList<>(toTable, e->true);
+        txtSearch.setOnKeyReleased(e->{
+            txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterData.setPredicate((Predicate<? super UserTM >) cust->{
+                    if(newValue==null){
+                        return true;
+                    }
+                    String toLowerCaseFilter = newValue.toLowerCase();
+                    if(cust.getId().contains(newValue)){
+                        return true;
+                    }else  if(cust.getId().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }else  if(cust.getName().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }else  if(cust.getAddress().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }else  if(cust.getBirthDay().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }else  if(cust.getTp().toLowerCase().contains(toLowerCaseFilter)){
+                        return true;
+                    }
+                    return false;
+                });
+            });
 
-
+            final SortedList<UserTM> userTMS = new SortedList<>(filterData);
+            userTMS.comparatorProperty().bind(tblUser.comparatorProperty());
+            tblUser.setItems(userTMS);
+        });
+    }
 }
