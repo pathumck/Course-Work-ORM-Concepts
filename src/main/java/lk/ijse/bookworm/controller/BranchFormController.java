@@ -15,6 +15,9 @@ import lk.ijse.bookworm.bo.custom.BranchBO;
 import lk.ijse.bookworm.bo.custom.impl.BranchBOImpl;
 import lk.ijse.bookworm.dto.BranchDTO;
 import lk.ijse.bookworm.dto.tm.BranchTM;
+import org.hibernate.HibernateException;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,7 +74,7 @@ public class BranchFormController {
         btnAdd.setOnAction((e) -> {
             int index = tblBranch.getSelectionModel().getSelectedIndex();
             if (index > -1) {
-                new Alert(Alert.AlertType.ERROR,"Branch "+lblId.getText()+"already exists").show();
+                new Alert(Alert.AlertType.ERROR,"Branch "+lblId.getText()+" already exists").show();
                 clearAllFields();
                 return;
             }
@@ -176,8 +179,13 @@ public class BranchFormController {
             Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to delete Branch \"" + id + "\" ?", yes, no).showAndWait();
 
             if (type.orElse(no) == yes) {
-                    Boolean flag = branchBO.deleteBranch(id);
-                    if (flag) {
+                Boolean flag = null;
+                try {
+                    flag = branchBO.deleteBranch(id);
+                } catch (HibernateException ex) {
+                    new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
+                }
+                if (flag) {
                         clearAllFields();
                         new Alert(Alert.AlertType.CONFIRMATION, "Deleted!").show();
                     }

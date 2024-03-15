@@ -3,10 +3,12 @@ package lk.ijse.bookworm.dao.custom.impl;
 import lk.ijse.bookworm.dao.custom.BranchDAO;
 import lk.ijse.bookworm.entity.Branch;
 import lk.ijse.bookworm.util.HbFactoryConfiguration;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class BranchDAOImpl implements BranchDAO {
@@ -74,7 +76,7 @@ public class BranchDAOImpl implements BranchDAO {
     }
 
     @Override
-    public boolean delete(String id) {
+    public boolean delete(String id) throws HibernateException {
         Session session = HbFactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -83,9 +85,8 @@ public class BranchDAOImpl implements BranchDAO {
             query.executeUpdate();
             transaction.commit();
             return true;
-        }catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        }catch (HibernateException e) {
+            throw e;
         }finally {
          session.close();
         }

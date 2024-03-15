@@ -3,6 +3,9 @@ package lk.ijse.bookworm.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class Book {
@@ -14,6 +17,10 @@ public class Book {
     private String status;
     @ManyToOne
     private Branch branch;
+    @OneToMany(mappedBy = "book")
+    private List<ReturnDetail> returnDetailList;
+    @OneToMany(mappedBy = "book")
+    private List<BorrowDetail> borrowDetailList;
 
     public Book() {
     }
@@ -25,6 +32,17 @@ public class Book {
         this.genre = genre;
         this.status = status;
         this.branch = branch;
+    }
+
+    public Book(String id, String title, String author, String genre, String status, Branch branch, List<ReturnDetail> returnDetailList, List<BorrowDetail> borrowDetailList) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.status = status;
+        this.branch = branch;
+        this.returnDetailList = returnDetailList;
+        this.borrowDetailList = borrowDetailList;
     }
 
     public String getId() {
@@ -75,6 +93,22 @@ public class Book {
         this.branch = branch;
     }
 
+    public List<ReturnDetail> getReturnDetailList() {
+        return returnDetailList;
+    }
+
+    public void setReturnDetailList(List<ReturnDetail> returnDetailList) {
+        this.returnDetailList = returnDetailList;
+    }
+
+    public List<BorrowDetail> getBorrowDetailList() {
+        return borrowDetailList;
+    }
+
+    public void setBorrowDetailList(List<BorrowDetail> borrowDetailList) {
+        this.borrowDetailList = borrowDetailList;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -84,6 +118,8 @@ public class Book {
                 ", genre='" + genre + '\'' +
                 ", status='" + status + '\'' +
                 ", branch=" + branch +
+                ", returnDetailList=" + returnDetailList +
+                ", borrowDetailList=" + borrowDetailList +
                 '}';
     }
 }

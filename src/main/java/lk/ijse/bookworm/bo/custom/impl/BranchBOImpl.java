@@ -5,7 +5,9 @@ import lk.ijse.bookworm.dao.custom.BranchDAO;
 import lk.ijse.bookworm.dao.custom.impl.BranchDAOImpl;
 import lk.ijse.bookworm.dto.BranchDTO;
 import lk.ijse.bookworm.entity.Branch;
+import org.hibernate.HibernateException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class BranchBOImpl implements BranchBO {
     }
 
     @Override
-    public boolean saveBranch(BranchDTO dto) {
+    public boolean saveBranch(BranchDTO dto) throws HibernateException {
         return branchDAO.save(new Branch(dto.getBranchId(),dto.getBranchName(),dto.getBranchAddress()));
     }
 
@@ -38,7 +40,7 @@ public class BranchBOImpl implements BranchBO {
     }
 
     @Override
-    public boolean deleteBranch(String id) {
+    public boolean deleteBranch(String id) throws HibernateException {
         return branchDAO.delete(id);
     }
 }

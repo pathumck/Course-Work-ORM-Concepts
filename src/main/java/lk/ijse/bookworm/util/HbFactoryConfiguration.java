@@ -1,8 +1,6 @@
 package lk.ijse.bookworm.util;
 
-import lk.ijse.bookworm.entity.Book;
-import lk.ijse.bookworm.entity.Branch;
-import lk.ijse.bookworm.entity.User;
+import lk.ijse.bookworm.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,6 +31,11 @@ public class HbFactoryConfiguration {
         //add annotated class to configure
         configuration.addAnnotatedClass(Book.class);
         configuration.addAnnotatedClass(Branch.class);
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Borrow.class);
+        configuration.addAnnotatedClass(Returns.class);
+        configuration.addAnnotatedClass(BorrowDetail.class);
+        configuration.addAnnotatedClass(ReturnDetail.class);
 
         //build session factory
         sessionFactory = configuration.buildSessionFactory();
